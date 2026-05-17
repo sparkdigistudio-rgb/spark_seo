@@ -4,6 +4,7 @@ import Performance from "./components/Performance.jsx";
 import Packages from "./components/Packages.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Blog from "./components/Blog.jsx";
+import Footer from "./components/Footer.jsx";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <Packages/>
             <Testimonials/>
             <Blog/>
+            <Footer/>
         </main>
     );
 };

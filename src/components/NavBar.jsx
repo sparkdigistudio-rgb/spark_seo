@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { navLinks } from "../constants";
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     return (
-        <header>
+        <header className={scrolled ? "scrolled" : ""}>
             <nav>
-                {/* Wordmark */}
-                <a href="#hero" className="nav-wordmark">
-                    Spark<span>.</span>
+                {/* Logo */}
+                <a href="#hero" className="nav-logo">
+                    <img src="/spark-logo.png" alt="Spark Digital & SEO" />
                 </a>
 
                 {/* Desktop links */}

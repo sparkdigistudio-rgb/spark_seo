@@ -50,14 +50,14 @@ const Testimonials = () => {
   );
 
   return (
-    <section id="testimonials" ref={sectionRef} className="relative pb-20 lg:pb-32">
+    <section id="testimonials" ref={sectionRef} className="relative pt-12 pb-20 lg:pt-16 lg:pb-32">
       <div className="max-w-6xl mx-auto px-6">
 
         <div className="text-center mb-16 lg:mb-20">
           <p className="hero-eyebrow mb-4">Client Words</p>
           <h2
             className="font-semibold text-4xl lg:text-5xl"
-            style={{ color: "var(--text-primary)" }}
+            style={{ color: "var(--text-on-dark)" }}
           >
             Don't take our word for it.
           </h2>
