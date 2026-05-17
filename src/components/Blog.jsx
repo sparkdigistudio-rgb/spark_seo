@@ -1,39 +1,25 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const POSTS = [
-  {
-    category: "SEO",
-    title: "Why Most Small Business Websites Fail (And How to Fix Yours)",
-    date: "May 2026",
-    href: "#",
-  },
-  {
-    category: "Design",
-    title: "5 SEO Mistakes That Are Quietly Costing You Customers",
-    date: "Apr 2026",
-    href: "#",
-  },
-  {
-    category: "Strategy",
-    title: "What Does a Website Actually Cost in 2026?",
-    date: "Apr 2026",
-    href: "#",
-  },
-  {
-    category: "Social Media",
-    title: "How to Build a Brand Presence on Social Without Burning Out",
-    date: "Mar 2026",
-    href: "#",
-  },
-];
-
 const Blog = () => {
   const sectionRef = useRef(null);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    import("../../tina/__generated__/client").then(({ client }) => {
+      client.queries.postConnection().then((res) => {
+        const edges = res.data?.postConnection?.edges || [];
+        const sorted = edges
+          .map((e) => e.node)
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
+        setPosts(sorted);
+      });
+    });
+  }, []);
 
   useGSAP(
     () => {
@@ -52,6 +38,17 @@ const Blog = () => {
     { scope: sectionRef }
   );
 
+  const formatDate = (iso) => {
+    if (!iso) return "";
+    return new Date(iso).toLocaleDateString("en-GB", {
+      month: "short",
+      year: "numeric",
+    });
+  };
+
+  const getSlug = (post) =>
+    post._sys?.filename || post.id?.split("/").pop()?.replace(".mdx", "") || "#";
+
   return (
     <section id="blog" ref={sectionRef} className="relative pt-12 pb-20 lg:pt-16 lg:pb-32">
       <div className="max-w-6xl mx-auto px-6">
@@ -67,18 +64,18 @@ const Blog = () => {
               Insights &amp; Updates
             </h2>
           </div>
-          <a href="#" className="blog-view-all">
+          <a href="/blog" className="blog-view-all">
             View all posts <span className="blog-arrow">→</span>
           </a>
         </div>
 
-        {/* Row list */}
+        {/* Row list — latest 3 only */}
         <div className="blog-list">
-          {POSTS.map((post, i) => (
-            <a key={i} href={post.href} className="blog-row">
+          {posts.slice(0, 3).map((post) => (
+            <a key={post.id} href={`/blog/${getSlug(post)}`} className="blog-row">
               <span className="blog-row__title">{post.title}</span>
               <span className="blog-row__meta">
-                <span className="blog-row__date">{post.date}</span>
+                <span className="blog-row__date">{formatDate(post.date)}</span>
                 <span className="blog-row__read">Read <span className="blog-arrow">→</span></span>
               </span>
             </a>
