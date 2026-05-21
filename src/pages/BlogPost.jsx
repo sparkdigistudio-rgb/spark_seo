@@ -115,8 +115,12 @@ const BlogPost = () => {
           <div className="bp-body">
             {post.body?.children
               ?.filter((block) => {
-                // drop empty paragraphs
+                // drop empty paragraphs — but keep paragraphs that contain images
                 if (block.type === "p") {
+                  const hasImage = block.children?.some(
+                    (n) => n.type === "img" || n.type === "image"
+                  );
+                  if (hasImage) return true;
                   const text = block.children?.map((n) => n.text ?? "").join("").trim();
                   return text.length > 0;
                 }
@@ -190,7 +194,20 @@ function renderBlock(block, key) {
     case "h2": return <h2 key={key}>{renderInline(block.children)}</h2>;
     case "h3": return <h3 key={key}>{renderInline(block.children)}</h3>;
     case "h4": return <h4 key={key}>{renderInline(block.children)}</h4>;
-    case "p":  return <p  key={key}>{renderInline(block.children)}</p>;
+    case "p": {
+      // If the paragraph contains only an image, render it as a figure
+      const imgChild = block.children?.find((n) => n.type === "img" || n.type === "image");
+      if (imgChild) {
+        const imgSrc = imgChild.url || imgChild.src || "";
+        return (
+          <figure key={key} className="bp-body-figure">
+            <img src={imgSrc} alt={imgChild.alt || imgChild.title || ""} className="bp-body-img" />
+            {imgChild.title && <figcaption className="bp-body-caption">{imgChild.title}</figcaption>}
+          </figure>
+        );
+      }
+      return <p key={key}>{renderInline(block.children)}</p>;
+    }
     case "hr": return <hr key={key} />;
     case "img":
     case "image": {
