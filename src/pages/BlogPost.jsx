@@ -193,12 +193,15 @@ function renderBlock(block, key) {
     case "p":  return <p  key={key}>{renderInline(block.children)}</p>;
     case "hr": return <hr key={key} />;
     case "img":
+    case "image": {
+      const imgSrc = block.url || block.src || block.href || "";
       return (
         <figure key={key} className="bp-body-figure">
-          <img src={block.url} alt={block.alt || ""} className="bp-body-img" />
+          <img src={imgSrc} alt={block.alt || block.title || ""} className="bp-body-img" />
           {block.caption && <figcaption className="bp-body-caption">{block.caption}</figcaption>}
         </figure>
       );
+    }
     case "blockquote":
       return (
         <blockquote key={key}>
@@ -229,6 +232,11 @@ function renderInline(nodes) {
   if (!nodes) return null;
   return nodes.map((node, i) => {
     if (!node) return null;
+    // Images can end up as inline nodes in some Tina AST versions
+    if (node.type === "img" || node.type === "image") {
+      const src = node.url || node.src || "";
+      return <img key={i} src={src} alt={node.alt || ""} className="bp-body-img" style={{ display: "block", margin: "1.5rem 0" }} />;
+    }
     if (node.type === "a")    return <a key={i} href={node.url} target="_blank" rel="noopener noreferrer">{renderInline(node.children)}</a>;
     if (node.type === "code") return <code key={i}>{node.value ?? node.text}</code>;
     if (node.bold && node.italic) return <strong key={i}><em>{node.text}</em></strong>;
