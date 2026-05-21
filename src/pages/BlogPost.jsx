@@ -129,7 +129,15 @@ const BlogPost = () => {
           <div className="bp-cta">
             <p className="bp-cta-eyebrow">Spark Digital & SEO</p>
             <p className="bp-cta-heading">Ready to grow your business online?</p>
-            <a href="/#packages" className="neon-btn">See Our Packages</a>
+            <a
+              href="/"
+              className="neon-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                sessionStorage.setItem("scrollTo", "packages");
+                window.location.href = "/";
+              }}
+            >See Our Packages</a>
           </div>
 
           <div className="bp-end">

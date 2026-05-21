@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { navLinks } from "../constants";
 
 const NavBar = () => {
@@ -11,19 +12,26 @@ const NavBar = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    const renderLink = (href, label, onClick) => {
+        if (href.startsWith("/")) {
+            return <Link to={href} onClick={onClick}>{label}</Link>;
+        }
+        return <a href={href} onClick={onClick}>{label}</a>;
+    };
+
     return (
         <header className={scrolled ? "scrolled" : ""}>
             <nav>
                 {/* Logo */}
-                <a href="#hero" className="nav-logo">
+                <Link to="/" className="nav-logo">
                     <img src="/spark-logo.png" alt="Spark Digital & SEO" />
-                </a>
+                </Link>
 
                 {/* Desktop links */}
                 <ul className="nav-links-desktop">
                     {navLinks.map(({ label, href }) => (
                         <li key={label}>
-                            <a href={href}>{label}</a>
+                            {renderLink(href, label)}
                         </li>
                     ))}
                 </ul>
@@ -45,9 +53,7 @@ const NavBar = () => {
                 <ul>
                     {navLinks.map(({ label, href }) => (
                         <li key={label}>
-                            <a href={href} onClick={() => setMenuOpen(false)}>
-                                {label}
-                            </a>
+                            {renderLink(href, label, () => setMenuOpen(false))}
                         </li>
                     ))}
                 </ul>

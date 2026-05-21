@@ -99,13 +99,13 @@ const Performance = () => {
           </h2>
         </div>
 
-        {/* Masonry Grid Container */}
+        {/* Portfolio Grid */}
         <div
           ref={gridRef}
-          className="masonry-grid columns-1 sm:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5 gap-6"
+          className="perf-grid"
         >
           {performanceImages.map((item, index) => (
-            <div key={index} className="masonry-item mb-6 break-inside-avoid">
+            <div key={index} className="perf-item">
               <img
                 src={item.src}
                 className="perf-img w-full rounded-3xl shadow-xl"

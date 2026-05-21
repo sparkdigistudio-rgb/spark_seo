@@ -71,15 +71,28 @@ const Blog = () => {
 
         {/* Row list — latest 3 only */}
         <div className="blog-list">
-          {posts.slice(0, 3).map((post) => (
-            <a key={post.id} href={`/blog/${getSlug(post)}`} className="blog-row">
-              <span className="blog-row__title">{post.title}</span>
-              <span className="blog-row__meta">
-                <span className="blog-row__date">{formatDate(post.date)}</span>
-                <span className="blog-row__read">Read <span className="blog-arrow">→</span></span>
-              </span>
-            </a>
-          ))}
+          {posts.slice(0, 3).map((post) => {
+            const slug = getSlug(post);
+            const hasCover = !!post.coverImage;
+            const rowStyle = hasCover
+              ? { backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(20,5,50,0.65) 100%), url(${post.coverImage})` }
+              : {};
+            return (
+              <a
+                key={post.id}
+                href={`/blog/${slug}`}
+                className={`blog-row${hasCover ? " blog-row--has-image" : ""}`}
+                style={rowStyle}
+              >
+                {post.category && <span className="blog-row__category">{post.category}</span>}
+                <span className="blog-row__title">{post.title}</span>
+                <span className="blog-row__meta">
+                  <span className="blog-row__date">{formatDate(post.date)}</span>
+                  <span className="blog-row__read">Read <span className="blog-arrow">→</span></span>
+                </span>
+              </a>
+            );
+          })}
         </div>
 
       </div>
