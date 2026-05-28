@@ -5,42 +5,34 @@ import { navLinks } from "../constants";
 const PACKAGES = {
   web: {
     label: "Website Design & Development",
-    price: "from £250",
     description: "A fully custom website built around your brand.",
   },
   seo: {
     label: "Website Optimisation (SEO)",
-    price: "from £99/month",
     description: "More organic visitors, without the guesswork.",
   },
   social: {
     label: "Social Media Management",
-    price: "from £350/month",
     description: "Consistent, on-brand presence across your social channels.",
   },
   "seo-basic": {
     label: "Basic SEO — The SEO Starter Pack",
-    price: "£299/month",
     description: "Perfect for businesses just getting started with SEO.",
   },
   "seo-standard": {
     label: "Standard SEO — The Growth Engine",
-    price: "£499/month",
     description: "Designed for growing businesses ready to compete.",
   },
   "seo-advanced": {
     label: "Advanced SEO — The Business Booster",
-    price: "£699/month",
     description: "For businesses serious about dominating their niche.",
   },
   "seo-professional": {
     label: "Professional SEO — The Performance Package",
-    price: "£999/month",
     description: "A full-service SEO solution for established businesses.",
   },
   "seo-platinum": {
     label: "Platinum SEO — The E-commerce Powerhouse",
-    price: "£1,499/month",
     description: "The ultimate SEO package for e-commerce businesses.",
   },
 };
@@ -81,7 +73,7 @@ const Contact = () => {
           email: form.email,
           phone: form.phone,
           message: form.message,
-          package: selectedPackage ? `${selectedPackage.label} — ${selectedPackage.price}` : "Not specified",
+          package: selectedPackage ? selectedPackage.label : "Not specified",
         }),
       });
 
@@ -163,7 +155,7 @@ const Contact = () => {
                     <p className="ct-package-label">{selectedPackage.label}</p>
                     <p className="ct-package-desc">{selectedPackage.description}</p>
                   </div>
-                  <span className="ct-package-price">{selectedPackage.price}</span>
+
                 </div>
               </div>
             )}

@@ -1,8 +1,8 @@
 const navLinks = [
   { label: "About", href: "/about" },
-  { label: "Portfolio", href: "#performance" },
-  { label: "Packages", href: "#packages" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Portfolio", href: "/#performance" },
+  { label: "Packages", href: "/#packages" },
+  { label: "Testimonials", href: "/#testimonials" },
   { label: "Blog", href: "/blog" },
 ];
 

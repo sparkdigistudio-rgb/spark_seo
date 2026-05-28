@@ -13,6 +13,18 @@ const NavBar = () => {
     }, []);
 
     const renderLink = (href, label, onClick) => {
+        if (href.startsWith("/#")) {
+            const id = href.slice(2);
+            const handleHashClick = (e) => {
+                if (window.location.pathname === "/") {
+                    e.preventDefault();
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                }
+                onClick?.();
+            };
+            return <a href={href} onClick={handleHashClick}>{label}</a>;
+        }
         if (href.startsWith("/")) {
             return <Link to={href} onClick={onClick}>{label}</Link>;
         }

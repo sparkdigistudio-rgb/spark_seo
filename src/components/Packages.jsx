@@ -11,9 +11,7 @@ const WEB_PACKAGES = [
     title: "Website Design & Development",
     description:
       "A fully custom website built from scratch around your brand. Fast, clean, and designed to make the right impression from day one.",
-    price: "£250",
-    priceNote: "starting from",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: false,
     slug: "web",
   },
@@ -22,9 +20,7 @@ const WEB_PACKAGES = [
     title: "Website Optimisation",
     description:
       "More organic visitors, without the guesswork. We handle the technical and on-page SEO so your site gets found by the people looking for you.",
-    price: "£99",
-    priceNote: "starting from",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: true,
     slug: "seo",
   },
@@ -33,9 +29,7 @@ const WEB_PACKAGES = [
     title: "Social Media Management",
     description:
       "Consistent, on-brand presence across your social channels — managed for you, so you can focus on running your business.",
-    price: "£350",
-    priceNote: "starting from",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: false,
     slug: "social",
   },
@@ -47,9 +41,7 @@ const SEO_PACKAGES = [
     title: "The SEO Starter Pack",
     description:
       "Perfect for businesses just getting started with SEO. We lay the foundations — on-page optimisation, keyword research, and a solid content strategy to get you noticed.",
-    price: "£299",
-    priceNote: "per month",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: false,
     slug: "seo-basic",
   },
@@ -58,9 +50,7 @@ const SEO_PACKAGES = [
     title: "The Growth Engine",
     description:
       "Designed for growing businesses ready to compete. A comprehensive SEO strategy covering technical SEO, content creation, and link building to drive consistent organic growth.",
-    price: "£499",
-    priceNote: "per month",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: false,
     slug: "seo-standard",
   },
@@ -69,9 +59,7 @@ const SEO_PACKAGES = [
     title: "The Business Booster",
     description:
       "For businesses serious about dominating their niche. In-depth audits, advanced content strategy, authority building, and monthly reporting to keep you ahead of the competition.",
-    price: "£699",
-    priceNote: "per month",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: true,
     slug: "seo-advanced",
   },
@@ -80,9 +68,7 @@ const SEO_PACKAGES = [
     title: "The Performance Package",
     description:
       "A full-service SEO solution for established businesses. Comprehensive on-page and off-page SEO, dedicated account management, and a data-driven approach to maximise ROI.",
-    price: "£999",
-    priceNote: "per month",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: false,
     slug: "seo-professional",
   },
@@ -91,9 +77,7 @@ const SEO_PACKAGES = [
     title: "The E-commerce Powerhouse",
     description:
       "The ultimate SEO package for e-commerce businesses. Product page optimisation, conversion-focused content, technical SEO, and aggressive link building to drive sales at scale.",
-    price: "£1,499",
-    priceNote: "per month",
-    cta: "Get Started",
+    cta: "Get a Quote",
     featured: false,
     slug: "seo-platinum",
   },
@@ -145,10 +129,6 @@ const SeoCarousel = () => {
                 <p className={`pkg-eyebrow${pkg.featured ? " pkg-eyebrow--featured" : ""}`}>{pkg.eyebrow}</p>
                 <h3 className="pkg-title">{pkg.title}</h3>
                 <p className="pkg-desc">{pkg.description}</p>
-                <div className="pkg-price-block">
-                  <span className="pkg-price-note">{pkg.priceNote}</span>
-                  <span className={`pkg-price${pkg.featured ? " pkg-price--featured" : ""}`}>{pkg.price}</span>
-                </div>
                 <a href={`/contact?package=${pkg.slug}`} className={`pkg-cta${pkg.featured ? " pkg-cta--featured" : ""}`}>
                   {pkg.cta}
                 </a>
@@ -219,10 +199,10 @@ const Packages = () => {
         <div className="text-center mb-6 lg:mb-10">
           <p className="hero-eyebrow mb-4">Packages</p>
           <h2 className="font-semibold text-4xl lg:text-5xl" style={{ color: "var(--text-primary)" }}>
-            Simple, Honest Pricing
+            Tailored to Your Business
           </h2>
           <p className="mt-4 text-base lg:text-lg max-w-lg mx-auto" style={{ color: "var(--text-muted)" }}>
-            No hidden fees. No long-term lock-ins.
+            No hidden fees. No long-term lock-ins. Get a custom quote tailored to your goals.
           </p>
         </div>
 
@@ -252,12 +232,6 @@ const Packages = () => {
                   </p>
                   <h3 className="pkg-title">{pkg.title}</h3>
                   <p className="pkg-desc">{pkg.description}</p>
-                  <div className="pkg-price-block">
-                    <span className="pkg-price-note">{pkg.priceNote}</span>
-                    <span className={`pkg-price ${pkg.featured ? "pkg-price--featured" : ""}`}>
-                      {pkg.price}
-                    </span>
-                  </div>
                   <a href={`/contact?package=${pkg.slug}`} className={`pkg-cta ${pkg.featured ? "pkg-cta--featured" : ""}`}>
                     {pkg.cta}
                   </a>
