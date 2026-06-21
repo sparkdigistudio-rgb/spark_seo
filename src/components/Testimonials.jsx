@@ -40,24 +40,24 @@ const TestiCard = ({ t, featured }) => {
 const TESTIMONIALS = [
   {
     quote:
-      "The site they built us looks better than anything we could have imagined. Clean, fast, and it actually converts. We saw a 40% jump in enquiries within the first month.",
-    name: "Marcus Reid",
-    role: "Director",
-    company: "Reid Interiors",
-  },
-  {
-    quote:
-      "As a small boutique on the outskirts of London, I wanted to build my online visibility and attract organic customers. Working with the team at Spark Digital & SEO was a game-changer. The expertise, professional advice, and passion that they put into each project resulted in a beautiful website and ongoing SEO efforts. Their technically sound yet artistic and responsive web design and brilliantly executed SEO services helped me reach a wider audience and boost my sales. Within three months, I saw a significant increase in organic traffic and inquiries. I highly recommend their services!",
-    name: "S. M. Harley",
+      "Spark Digital created custom social media posts for us which were far from generic, tailored to what we do, and in line with our philosophy and brand image.",
+    name: "Advocate My Meds",
     role: "",
     company: "",
   },
   {
     quote:
-      "Handed them our socials and haven't had to think about it since. Consistent posts, proper branding, and our followers have tripled in three months.",
-    name: "Danny Okafor",
-    role: "Owner",
-    company: "Okafor Fitness",
+      "Spark Digital’s blog content does something increasingly rare; it reads like it was actually written by a human.The research holds, the brand voice stays intact, and copy comes back rarely needing rework. Since their team has become a fixture in our content strategy, organic traffic has grown consistently. What ties it together is that the writing has rhythm, a point of view, and arguments that build rather than accumulate. In a content landscape where AI-generated copy is the default, that's no longer a small distinction.",
+    name: "One Homes",
+    role: "",
+    company: "",
+  },
+  {
+    quote:
+      "Spark Digitial put up with my back and forth and made these beautiful custom posts for my IG that resonated with my readers and engaged my followers. I couldn’t be happier.",
+    name: "The Happiness Guide",
+    role: "",
+    company: "",
   },
 ];
 

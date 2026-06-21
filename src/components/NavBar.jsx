@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { navLinks } from "../constants";
 
 const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20);
@@ -16,10 +18,12 @@ const NavBar = () => {
         if (href.startsWith("/#")) {
             const id = href.slice(2);
             const handleHashClick = (e) => {
-                if (window.location.pathname === "/") {
-                    e.preventDefault();
-                    const el = document.getElementById(id);
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                e.preventDefault();
+                if (location.pathname === "/") {
+                    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                    sessionStorage.setItem("scrollTo", id);
+                    navigate("/");
                 }
                 onClick?.();
             };
