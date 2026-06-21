@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { navLinks } from "../constants";
+import { Nav } from "tinacms";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 const PACKAGES = {
   web: {
@@ -93,36 +96,7 @@ const Contact = () => {
     <div className="bp-page">
 
       {/* ── Navbar ──────────────────────────────── */}
-      <header className="bp-header">
-        <nav className="bp-nav">
-          <a href="/" className="nav-logo">
-            <img src="/spark-logo.png" alt="Spark Digital & SEO" />
-          </a>
-          <ul className="nav-links-desktop">
-            {navLinks.map(({ label, href }) => (
-              <li key={label}><a href={`/${href}`}>{label}</a></li>
-            ))}
-          </ul>
-          <button
-            className="nav-hamburger"
-            aria-label="Toggle menu"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span className={menuOpen ? "open" : ""} />
-            <span className={menuOpen ? "open" : ""} />
-            <span className={menuOpen ? "open" : ""} />
-          </button>
-        </nav>
-        <div className={`nav-mobile-drawer ${menuOpen ? "nav-mobile-drawer--open" : ""}`}>
-          <ul>
-            {navLinks.map(({ label, href }) => (
-              <li key={label}>
-                <a href={`/${href}`} onClick={() => setMenuOpen(false)}>{label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </header>
+      <NavBar/>
 
       {/* ── Hero ────────────────────────────────── */}
       <div className="bp-hero">
@@ -268,37 +242,7 @@ const Contact = () => {
       </main>
 
       {/* ── Footer ──────────────────────────────── */}
-      <footer id="footer">
-        <div className="footer-inner">
-          <div className="footer-brand">
-            <a href="/"><img src="/spark-logo.png" alt="Spark Digital & SEO" className="footer-logo" /></a>
-            <p className="footer-tagline">Helping businesses get noticed, remembered, and trusted online.</p>
-          </div>
-          <nav className="footer-nav">
-            <p className="footer-nav-heading">Navigation</p>
-            <ul>
-              {navLinks.map(({ label, href }) => (
-                <li key={label}><a href={`/${href}`}>{label}</a></li>
-              ))}
-            </ul>
-          </nav>
-          <div className="footer-contact">
-            <p className="footer-nav-heading">Get In Touch</p>
-            <ul>
-              <li><a href="mailto:connect@sparkdigistudio.com">connect@sparkdigistudio.com</a></li>
-              <li><a href="tel:+447985390098">+44 798 539 0098</a></li>
-              <li>Monday – Friday, 9 am – 6 pm</li>
-            </ul>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Spark Digital & SEO. All rights reserved.</p>
-          <div className="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
 
     </div>
   );
